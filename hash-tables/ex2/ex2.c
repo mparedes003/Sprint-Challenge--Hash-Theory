@@ -21,6 +21,9 @@ char **reconstruct_trip(Ticket **tickets, int length)
 
   // Build the route
   // Route is an array
+  char *origin = "NONE";
+  // Set the origin to "NONE"
+  route[0] = hash_table_retrieve(ht, origin);
   // Use a for loop to construct the array
   for (int i = 1; i < length; i++)
   {
