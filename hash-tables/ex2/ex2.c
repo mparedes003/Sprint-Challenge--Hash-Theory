@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hashtable.h"
+#include "hashtable.c" // import hashtable.c so you have access to the hash_table functions
 #include "ex2.h"
 
 char **reconstruct_trip(Ticket **tickets, int length)
@@ -10,18 +11,35 @@ char **reconstruct_trip(Ticket **tickets, int length)
   char **route = malloc(length * sizeof(char *));
 
   // YOUR CODE HERE
+  // Use a for loop to construct the ht
+  for (int i = 0; i < length; i++)
+  {
+    // insert all tickets inside the ht
+    // key = source and value = destination
+    hash_table_insert(ht, tickets[i]->source, tickets[i]->destination);
+  }
+
+  // Build the route
+  // Route is an array
+  // Use a for loop to construct the array
+  for (int i = 1; i < length; i++)
+  {
+    // Assign the value of each destination in the route[i] array
+    // To get the 'i'th location in the route
+    // Use hash_table_retrieve function where key = route[i - 1]
+    route[i] = hash_table_retrieve(ht, route[i - 1]);
+  }
 
   return route;
 }
 
 void print_route(char **route, int length)
 {
-  for (int i = 0; i < length; i++) {
+  for (int i = 0; i < length; i++)
+  {
     printf("%s\n", route[i]);
   }
 }
-
-
 
 #ifndef TESTING
 int main(void)

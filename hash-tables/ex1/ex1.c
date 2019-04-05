@@ -15,7 +15,7 @@ Answer *get_indices_of_item_weights(int *weights, int length, int limit)
   // Use a for loop to construct the hash table
   for (int i = 0; i < length; i++)
   {
-    // Assign the value of a pair in ht to get_index
+    // Assign the value of a pair in ht to return_index
     int return_index = hash_table_retrieve(ht, weights[i]);
 
     // If the key exists in the hash table
